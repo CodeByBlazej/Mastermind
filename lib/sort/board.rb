@@ -7,3 +7,9 @@ class Board
     @hint_row = Array.new(2) { Array.new(2) }
   end
 end
+
+def display_board
+  p @hidden_row
+  p @guess_row
+  p @hint_row
+end
