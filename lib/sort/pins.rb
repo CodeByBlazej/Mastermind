@@ -1,8 +1,11 @@
 class Pin
-  attr_accessor :white, :red
+  attr_accessor :color
 
-  def initialize (white, red)
-    @white = white
-    @red = red
+  def initialize (color)
+    @color = color
+  end
+
+  def show_me
+    p "I am #{@color}"
   end
 end
