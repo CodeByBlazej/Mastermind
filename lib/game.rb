@@ -22,3 +22,23 @@ white_pin.show_me
 red_pin.show_me
 puts red_ball.symbol
 puts yellow_ball.symbol
+
+# starts the game 
+
+puts "Let's start the game... What is your name?"
+player_name = gets.chomp
+
+player = Player.new(player_name)
+
+puts "Computer is going to pick color of the balls and tell you what they are"
+
+all_colors = [red_ball, green_ball, yellow_ball, blue_ball,
+purple_ball, cyan_ball, white_ball, grey_ball]
+
+computer = Computer.new("computer")
+
+puts all_colors.map { |color| color.symbol }
+
+computer.pick_colors(all_colors)
+
+puts computer.selected_colors.each { |color| color.symbol }
