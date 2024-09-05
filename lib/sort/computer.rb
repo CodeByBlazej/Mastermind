@@ -1,4 +1,6 @@
 require_relative 'colors'
+require_relative 'board'
+
 
 class Computer
   attr_accessor :name, :selected_colors, :code
@@ -14,5 +16,7 @@ class Computer
 
   def make_a_code(selected_colors)
     @code = @selected_colors.sample(4)
+    @code.map { |symbol| @hidden_row.push(symbol) }
+    # @hidden_row.push(@code)
   end
 end
