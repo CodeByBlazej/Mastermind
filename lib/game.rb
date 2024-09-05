@@ -31,7 +31,7 @@ player_name = gets.chomp
 player = Player.new(player_name)
 
 puts "Computer is going to pick color of the balls and tell you what they are"
-
+# Think later when to move all_colors. I think it looks misplaced here
 all_colors = [red_ball, green_ball, yellow_ball, blue_ball,
 purple_ball, cyan_ball, white_ball, grey_ball]
 
@@ -41,4 +41,6 @@ puts all_colors.map { |color| color.symbol }
 
 computer.pick_colors(all_colors)
 
-puts computer.selected_colors.each { |color| color.symbol }
+puts "aaaaaa"
+
+puts computer.selected_colors.map { |color| color.symbol}
