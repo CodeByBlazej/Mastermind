@@ -43,4 +43,9 @@ computer.pick_colors(all_colors)
 
 puts "aaaaaa"
 
-puts computer.selected_colors.map { |color| color.symbol}
+puts computer.selected_colors.map { |color| color.symbol }
+puts "Now when you know what colors you are going to play with,
+computer is going to SELECT A CODE using these colors..."
+
+computer.make_a_code(@selected_colors)
+puts computer.code.map { |color| color.symbol }
