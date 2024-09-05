@@ -1,3 +1,5 @@
+require_relative 'computer'
+
 class Board
   attr_accessor :hidden_row, :guess_row, :hint_row
 
