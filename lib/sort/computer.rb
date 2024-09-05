@@ -9,7 +9,6 @@ class Computer
 
   
   def pick_colors(colors)
-    @selected_colors = []
-    @selected_colors.push(colors.sample(4))
+    @selected_colors = colors.sample(4)
   end
 end
