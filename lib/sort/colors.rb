@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative 'computer'
+require_relative 'board'
 
 class Colors
   attr_accessor :color, :symbol
