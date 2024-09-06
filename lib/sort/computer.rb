@@ -16,7 +16,6 @@ class Computer
 
   def make_a_code(selected_colors)
     @code = @selected_colors.sample(4)
-    @code.map { |symbol| @hidden_row.push(symbol) }
-    # @hidden_row.push(@code)
   end
+  
 end
