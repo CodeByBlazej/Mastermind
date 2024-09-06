@@ -49,4 +49,8 @@ computer is going to SELECT A CODE using these colors..."
 
 computer.make_a_code(@selected_colors)
 puts computer.code.map { |color| color.symbol }
-puts board.hidden_row
+
+board.hidden_row = computer.code 
+
+puts board.hidden_row.map { |color| color.symbol }
+
