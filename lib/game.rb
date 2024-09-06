@@ -54,3 +54,5 @@ board.hidden_row = computer.code
 
 puts board.hidden_row.map { |color| color.symbol }
 
+board.display_board
+
