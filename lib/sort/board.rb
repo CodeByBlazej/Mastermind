@@ -14,7 +14,10 @@ class Board
   def display_board
     puts "-------"
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
+    arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
+
     puts arr1.join(' ')
+    puts arr2.join(' ')
     p @guess_row
     p @hint_row[0]
     p @hint_row[1]
