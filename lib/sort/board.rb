@@ -12,9 +12,10 @@ class Board
 
 
   def display_board
+    puts "-------"
     puts @hidden_row.map { |color| color.symbol }
-    puts @guess_row
-    puts @hint_row[0]
-    puts @hint_row[1]
+    p @guess_row
+    p @hint_row[0]
+    p @hint_row[1]
   end
-end
+end 
