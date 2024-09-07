@@ -15,11 +15,13 @@ class Board
     puts "-------"
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
+    arr3 = @hint_row[0].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
+    arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
 
     puts arr1.join(' ')
     puts arr2.join(' ')
-    p @guess_row
-    p @hint_row[0]
-    p @hint_row[1]
+    puts "Pins are:"
+    puts arr3.join(' ')
+    puts arr4.join(' ')
   end
 end 
