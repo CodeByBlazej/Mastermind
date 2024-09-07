@@ -17,7 +17,7 @@ cyan_ball = Colors.new("cyan", "X")
 white_ball = Colors.new("white", "X")
 grey_ball = Colors.new("grey", "X")
 
-# board.display_board
+board.display_board
 white_pin.show_me
 red_pin.show_me
 puts red_ball.symbol
@@ -55,4 +55,6 @@ board.hidden_row = computer.code
 puts board.hidden_row.map { |color| color.symbol }
 
 board.display_board
+
+puts purple_ball.color_name
 
