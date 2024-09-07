@@ -17,5 +17,9 @@ class Computer
   def make_a_code(selected_colors)
     @code = @selected_colors.sample(4)
   end
+
+  def show_selected_colors(selected_colors)
+    @selected_colors.map { |color| puts "#{color.symbol} - #{color.color_name}"}
+  end
   
 end
