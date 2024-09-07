@@ -56,5 +56,6 @@ puts board.hidden_row.map { |color| color.symbol }
 
 board.display_board(computer)
 
-puts purple_ball.color_name
+puts "Guess the code by putting each peg in every hole. 
+To do it type: "
 
