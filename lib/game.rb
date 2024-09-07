@@ -5,8 +5,8 @@ require_relative 'sort/player'
 require_relative 'sort/pins'
 
 board = Board.new
-white_pin = Pin.new("white")
-red_pin = Pin.new("red")
+white_pin = Pin.new("white", "W")
+red_pin = Pin.new("red", "R")
 
 red_ball = Colors.new("red", "X")
 green_ball = Colors.new("green", "X")
@@ -17,7 +17,7 @@ cyan_ball = Colors.new("cyan", "X")
 white_ball = Colors.new("white", "X")
 grey_ball = Colors.new("grey", "X")
 
-board.display_board
+# board.display_board(computer)
 white_pin.show_me
 red_pin.show_me
 puts red_ball.symbol
@@ -43,7 +43,7 @@ computer.pick_colors(all_colors)
 
 puts "aaaaaa"
 
-puts computer.selected_colors.map { |color| color.symbol }
+computer.show_selected_colors(@selected_colors)
 puts "Now when you know what colors you are going to play with,
 computer is going to SELECT A CODE using these colors..."
 
@@ -54,7 +54,7 @@ board.hidden_row = computer.code
 
 puts board.hidden_row.map { |color| color.symbol }
 
-board.display_board
+board.display_board(computer)
 
 puts purple_ball.color_name
 
