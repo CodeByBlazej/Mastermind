@@ -9,6 +9,6 @@ class Pin
   end
 
   def show_me
-    p "I am #{@color}"
+    puts "I am #{@color_symbol}"
   end
 end
