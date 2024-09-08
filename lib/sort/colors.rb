@@ -6,7 +6,7 @@ class Colors
   attr_accessor :color_name, :symbol
 
   def initialize (color_name, symbol)
-    @color_name = color_name.colorize(color_name.to_sym) 
+    @color_name = color_name
     @symbol = symbol.colorize(color_name.to_sym)
   end
 end
