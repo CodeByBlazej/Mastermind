@@ -14,8 +14,7 @@ class Board
 
   def display_board(computer)
     puts "-------"
-    puts "COLORS YOU ARE PLAYING WIH:"
-    computer.show_selected_colors
+    # puts "Colors in this game are: #{all_colors}"
 
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     
@@ -28,9 +27,10 @@ class Board
     puts "HIDDEN ROW FOR NOW"
 
     puts arr2.join(' ')
-    
+
     puts "Pins are:"
     puts arr3.join(' ')
     puts arr4.join(' ')
   end
+
 end 
