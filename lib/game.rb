@@ -30,29 +30,17 @@ player_name = gets.chomp
 
 player = Player.new(player_name)
 
-puts "Computer is going to pick color of the balls and tell you what they are"
+puts "Computer is going to make a code now..."
 # Think later when to move all_colors. I think it looks misplaced here
 all_colors = [red_ball, green_ball, yellow_ball, blue_ball,
 purple_ball, cyan_ball, white_ball, grey_ball]
 
 computer = Computer.new("computer")
+computer.make_a_code(all_colors)
 
-puts all_colors.map { |color| color.symbol }
-
-computer.pick_colors(all_colors)
-
-puts "aaaaaa"
-
-computer.show_selected_colors
-puts "Now when you know what colors you are going to play with,
-computer is going to SELECT A CODE using these colors..."
-
-computer.make_a_code
-puts computer.code.map { |color| color.symbol }
+computer.code
 
 board.hidden_row = computer.code 
-
-puts board.hidden_row.map { |color| color.symbol }
 
 board.display_board(computer)
 
@@ -61,6 +49,8 @@ To do it type: "
 computer.guess
 board.guess_row = computer.guessed_code
 board.display_board(computer)
+computer.show_available_colors(all_colors)
+puts computer.aval_colors
 
 # computer.selected_colors.map { |color| p color}
 # computer.guess(@selected_colors)
