@@ -1,3 +1,4 @@
+require 'colorize'
 require_relative 'computer'
 require_relative 'colors'
 
@@ -14,7 +15,8 @@ class Board
   def display_board(computer)
     puts "-------"
     puts "COLORS YOU ARE PLAYING WIH:"
-    computer.show_selected_colors(@selected_colors)
+    computer.show_selected_colors
+
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     
     arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
@@ -26,6 +28,7 @@ class Board
     puts "HIDDEN ROW FOR NOW"
 
     puts arr2.join(' ')
+    
     puts "Pins are:"
     puts arr3.join(' ')
     puts arr4.join(' ')
