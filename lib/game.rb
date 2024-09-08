@@ -43,11 +43,11 @@ computer.pick_colors(all_colors)
 
 puts "aaaaaa"
 
-computer.show_selected_colors(@selected_colors)
+computer.show_selected_colors
 puts "Now when you know what colors you are going to play with,
 computer is going to SELECT A CODE using these colors..."
 
-computer.make_a_code(@selected_colors)
+computer.make_a_code
 puts computer.code.map { |color| color.symbol }
 
 board.hidden_row = computer.code 
@@ -58,4 +58,15 @@ board.display_board(computer)
 
 puts "Guess the code by putting each peg in every hole. 
 To do it type: "
+computer.guess
+board.guess_row = computer.guessed_code
+board.display_board(computer)
+
+# computer.selected_colors.map { |color| p color}
+# computer.guess(@selected_colors)
+# p computer.guessed_code
+# p computer.code
+# p computer.selected_colors
+# board.guess_row = player.guessed_code
+
 
