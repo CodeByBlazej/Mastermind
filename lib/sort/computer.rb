@@ -15,10 +15,14 @@ class Computer
   end
 
   def show_available_colors(all_colors)
-    @aval_colors = all_colors.each do |color|
-      colorized_name = color.color_name.colorize(color.color_name.to_sym)
-      puts "[#{color.symbol} - #{colorized_name}]"
+    @aval_colors = all_colors.map do |color|
+      color.color_name.colorize(color.color_name.to_sym)
     end
+    puts aval_colors.join(' ')
+  end
+
+  def test
+    @aval_colors.map { |color| "[#{color.color_name}]"}
   end
 
   def guess
