@@ -50,7 +50,6 @@ computer.guess
 board.guess_row = computer.guessed_code
 board.display_board(computer)
 computer.show_available_colors(all_colors)
-puts computer.aval_colors
 
 # computer.selected_colors.map { |color| p color}
 # computer.guess(@selected_colors)
