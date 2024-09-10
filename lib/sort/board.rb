@@ -3,7 +3,7 @@ require_relative 'computer'
 require_relative 'colors'
 
 class Board
-  attr_accessor :hidden_row, :guess_row, :hint_row
+  attr_accessor :hidden_row, :guess_row, :hint_row, :aval_colors
 
   def initialize
     @hidden_row = Array.new(4)
@@ -11,9 +11,19 @@ class Board
     @hint_row = Array.new(2) { Array.new(2) }
   end
 
+  def show_available_colors(all_colors)
+    @aval_colors = all_colors.map do |color|
+      color.color_name.colorize(color.color_name.to_sym)
+    end
+    puts aval_colors.join(' ')
+  end
 
-  def display_board(computer)
+  def display_board(all_colors)
     puts "-------"
+    puts "Colors available in this game are:
+    \n"
+    show_available_colors(all_colors)
+    # show_available_colors(all_colors)
     # puts "Colors in this game are: #{all_colors}"
 
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
@@ -22,7 +32,7 @@ class Board
     arr3 = @hint_row[0].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     
-    puts "HIDDEN ROW FOR NOW"
+    puts "\nHIDDEN ROW FOR NOW"
     puts arr1.join(' ')
     puts "HIDDEN ROW FOR NOW"
 
