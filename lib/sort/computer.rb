@@ -4,7 +4,7 @@ require_relative 'player'
 
 
 class Computer
-  attr_accessor :name, :code, :guessed_code, :aval_colors
+  attr_accessor :name, :code, :guessed_code
 
   def initialize (name)
     @name = name
@@ -14,21 +14,11 @@ class Computer
     @code = all_colors.sample(4)
   end
 
-  def show_available_colors(all_colors)
-    @aval_colors = all_colors.map do |color|
-      color.color_name.colorize(color.color_name.to_sym)
-    end
-    puts aval_colors.join(' ')
-  end
 
-  def test
-    @aval_colors.map { |color| "[#{color.color_name}]"}
-  end
-
-  def guess
+  def guess(all_colors)
     @guessed_code = Array.new(4) do
       guess_input = gets.chomp.downcase
-      @code.find { |color| color.color_name == guess_input}
+      all_colors.find { |color| color.color_name == guess_input}
     end
   end
   
