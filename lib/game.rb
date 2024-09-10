@@ -1,3 +1,4 @@
+require 'pry-byebug'
 require_relative 'sort/board'
 require_relative 'sort/colors'
 require_relative 'sort/computer'
@@ -37,25 +38,18 @@ purple_ball, cyan_ball, white_ball, grey_ball]
 
 computer = Computer.new("computer")
 computer.make_a_code(all_colors)
-
-computer.code
-
 board.hidden_row = computer.code 
 
-board.display_board(computer)
+binding.pry
+
+board.display_board(all_colors)
 
 puts "Guess the code by putting each peg in every hole. 
-To do it type: "
-computer.guess
+To do it type name of the color: "
+computer.guess(all_colors)
 board.guess_row = computer.guessed_code
-board.display_board(computer)
-computer.show_available_colors(all_colors)
+board.display_board(all_colors)
 
-# computer.selected_colors.map { |color| p color}
-# computer.guess(@selected_colors)
-# p computer.guessed_code
-# p computer.code
-# p computer.selected_colors
-# board.guess_row = player.guessed_code
+# first thing tomorrow - move computer.guess method to player and let player play
 
 
