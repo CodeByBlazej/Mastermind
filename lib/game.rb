@@ -46,8 +46,9 @@ board.display_board(all_colors)
 
 puts "Guess the code by putting each peg in every hole. 
 To do it type name of the color: "
-computer.guess(all_colors)
-board.guess_row = computer.guessed_code
+player.guess(all_colors)
+board.guess_row = player.guessed_code
+board.check_for_hints
 board.display_board(all_colors)
 
 # first thing tomorrow - move computer.guess method to player and let player play
