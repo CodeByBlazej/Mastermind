@@ -43,4 +43,8 @@ class Board
     puts arr4.join(' ')
   end
 
+  def check_for_hints
+    @hint_row = @guess_row.select { |item| item.include?(@hidden_row)}
+  end
+
 end 
