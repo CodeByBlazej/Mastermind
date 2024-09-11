@@ -7,8 +7,11 @@ class Player
     @name = name
   end
 
-  def guess(selected_colors)
-    @guesed_code = @selected_colors.map { |color| color.color_name == gets.chomp ? color.symbol : "You put wrong name" }
+  def guess(all_colors)
+    @guessed_code = Array.new(4) do
+      guess_input = gets.chomp.downcase
+      all_colors.find { |color| color.color_name == guess_input}
+    end
   end
 
 end
