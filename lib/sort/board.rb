@@ -8,7 +8,8 @@ class Board
   def initialize
     @hidden_row = Array.new(4)
     @guess_row = Array.new(4)
-    @hint_row = Array.new(2) { Array.new(2) }
+    @hint_row = Array.new(4) 
+    # { Array.new(2) }
   end
 
   def show_available_colors(all_colors)
@@ -29,8 +30,8 @@ class Board
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     
     arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
-    arr3 = @hint_row[0].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
-    arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
+    arr3 = @hint_row.map { |color| color.nil? ? "[0]" : "[#{color.color_name}]"}
+    # arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     
     puts "\nHIDDEN ROW FOR NOW"
     puts arr1.join(' ')
@@ -40,11 +41,16 @@ class Board
 
     puts "Pins are:"
     puts arr3.join(' ')
-    puts arr4.join(' ')
+    # puts arr4.join(' ')
   end
 
   def check_for_hints
-    @hint_row = @guess_row.intersection(@hidden_row)
+    intersection = @hidden_row & @guess_row
+    if !intersection.empty? 
+      @hint_row = intersection
+    else @hint_row
+    end
+    # @hint_row = @guess_row.intersection(@hidden_row)
   end
 
 end 
