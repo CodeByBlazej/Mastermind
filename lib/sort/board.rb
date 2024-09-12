@@ -44,7 +44,7 @@ class Board
   end
 
   def check_for_hints
-    @hint_row = @guess_row.select { |item| item.include?(@hidden_row)}
+    @hint_row = @guess_row.intersection(@hidden_row)
   end
 
 end 
