@@ -40,7 +40,6 @@ computer = Computer.new("computer")
 computer.make_a_code(all_colors)
 board.hidden_row = computer.code 
 
-binding.pry
 
 board.display_board(all_colors)
 
@@ -50,7 +49,8 @@ player.guess(all_colors)
 board.guess_row = player.guessed_code
 board.check_for_hints
 board.display_board(all_colors)
-
-# first thing tomorrow - make method for checking pins
+binding.pry
+puts 'sialal' 
+# first thing tomorrow - update method for checking pins to give pins symbols rather than colors symbols
 
 
