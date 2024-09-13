@@ -30,7 +30,7 @@ class Board
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     
     arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
-    arr3 = @hint_row.map { |color| color.nil? ? "[0]" : "[#{color.color_name}]"}
+    arr3 = @hint_row.map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     # arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     
     puts "\nHIDDEN ROW FOR NOW"
@@ -44,10 +44,13 @@ class Board
     # puts arr4.join(' ')
   end
 
-  def check_for_hints
+  def check_for_hints(white_pin)
     intersection = @hidden_row & @guess_row
-    if !intersection.empty? 
-      @hint_row = intersection
+    if !intersection.empty?
+      pins = intersection.map { |match| match.color_name = white_pin}
+      @hint_row = pins
+      # @hint_row = intersection
+
     else @hint_row
     end
     # @hint_row = @guess_row.intersection(@hidden_row)
