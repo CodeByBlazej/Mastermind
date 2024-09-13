@@ -47,8 +47,8 @@ puts "Guess the code by putting each peg in every hole.
 To do it type name of the color: "
 player.guess(all_colors)
 board.guess_row = player.guessed_code
-board.check_for_hints
 board.display_board(all_colors)
+board.check_for_hints(white_pin)
 binding.pry
 puts 'sialal' 
 # first thing tomorrow - update method for checking pins to give pins symbols rather than colors symbols
