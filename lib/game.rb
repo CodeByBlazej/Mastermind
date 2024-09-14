@@ -45,12 +45,25 @@ board.display_board(all_colors)
 
 puts "Guess the code by putting each peg in every hole. 
 To do it type name of the color: "
-player.guess(all_colors)
-board.guess_row = player.guessed_code
-board.check_for_hints(white_pin, red_pin)
-board.display_board(all_colors)
-binding.pry
-puts 'sialal' 
-# first thing tomorrow - update method for checking pins to give pins symbols rather than colors symbols
+round = (1..12)
+round.each do |round|
+
+  player.guess(all_colors)
+  board.guess_row = player.guessed_code
+  board.check_for_hints(white_pin, red_pin)
+  board.display_board(all_colors)
+  puts "Guess the code by putting each peg in every hole. 
+  To do it type name of the color: "
+  # binding.pry
+  if board.hint_row.all?(red_pin)
+    puts "#{player_name} WON!"
+    break
+  end
+  
+end
+
+
+  
+# first thing tomorrow - make counter for rounds and if player won display at which round he won.
 
 
