@@ -66,20 +66,7 @@ class Board
         hidden_clone[hidden_clone.index { |hidden_color| hidden_color&.color_name == guess_color.color_name} ] = nil
       end
     end
-    
+
     @hint_row = hints.sample(4)
-  end
-
-  def check_for_hints_test(white_pin)
-    intersection = @hidden_row & @guess_row
-    intersection_dup = intersection.dup
-    if !intersection_dup.empty?
-      pins = intersection_dup.map { |match| match.color_name = white_pin}
-      @hint_row = pins
-      # @hint_row = intersection
-
-    else @hint_row
-    end
-    # @hint_row = @guess_row.intersection(@hidden_row)
   end
 end 
