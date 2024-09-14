@@ -44,10 +44,37 @@ class Board
     # puts arr4.join(' ')
   end
 
-  def check_for_hints(white_pin)
+  def check_for_hints(white_pin, red_pin)
+    hidden_clone = @hidden_row.clone
+    guess_clone = @guess_row.clone
+    hints = Array.new(4)
+
+    guess_clone.each_with_index do |guess_color, index|
+
+      if guess_color && hidden_clone[index] && guess_color.color_name == hidden_clone[index].color_name
+        hints[index] = red_pin
+        hidden_clone[index] = nil
+        guess_clone[index] = nil
+      end
+    end
+
+    guess_clone.each_with_index do |guess_color, index|
+      next if guess_color.nil?
+
+      if hidden_clone.any? { |hidden_color| hidden_color&.color_name == guess_color.color_name }
+        hints[index] = white_pin
+        hidden_clone[hidden_clone.index { |hidden_color| hidden_color&.color_name == guess_color.color_name} ] = nil
+      end
+    end
+    
+    @hint_row = hints.sample(4)
+  end
+
+  def check_for_hints_test(white_pin)
     intersection = @hidden_row & @guess_row
-    if !intersection.empty?
-      pins = intersection.map { |match| match.color_name = white_pin}
+    intersection_dup = intersection.dup
+    if !intersection_dup.empty?
+      pins = intersection_dup.map { |match| match.color_name = white_pin}
       @hint_row = pins
       # @hint_row = intersection
 
@@ -55,5 +82,4 @@ class Board
     end
     # @hint_row = @guess_row.intersection(@hidden_row)
   end
-
 end 
