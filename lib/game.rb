@@ -45,25 +45,26 @@ board.display_board(all_colors)
 
 puts "Guess the code by putting each peg in every hole. 
 To do it type name of the color: "
-round = (1..12)
-round.each do |round|
+player.play_round(board, all_colors, white_pin, red_pin)
+# round = (1..12)
+# round.each do |round|
 
-  player.guess(all_colors)
-  board.guess_row = player.guessed_code
-  board.check_for_hints(white_pin, red_pin)
-  board.display_board(all_colors)
-  puts "Guess the code by putting each peg in every hole. 
-  To do it type name of the color: "
-  # binding.pry
-  if board.hint_row.all?(red_pin)
-    puts "#{player_name} WON!"
-    break
-  end
+#   player.guess(all_colors)
+#   board.guess_row = player.guessed_code
+#   board.check_for_hints(white_pin, red_pin)
+#   board.display_board(all_colors)
+#   puts "Guess the code by putting each peg in every hole. 
+#   To do it type name of the color: "
+#   # binding.pry
+#   if board.hint_row.all?(red_pin)
+#     puts "#{player_name} WON!"
+#     break
+#   end
   
-end
+# end
 
 
   
-# first thing tomorrow - make counter for rounds and if player won display at which round he won.
+# first thing tomorrow - make counter for rounds and if player won and refactor game file to make it a class
 
 
