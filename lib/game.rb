@@ -28,7 +28,7 @@ class Game
     @round_number = 1
   end
 
-  def play_round
+  def play_guesser_round
     until @round_number == 12 do
       @player.guess(@all_colors)
       @board.guess_row = @player.guessed_code
@@ -47,13 +47,24 @@ class Game
   def start
     puts "Welcome to Mastermind! What is your name?"
     @player_name = gets.chomp
-    puts "Thanks! Computer is going to make a code now..."
-    @computer.make_a_code(@all_colors)
-    @board.hidden_row = @computer.code 
-    puts "\nIt's round number: #{@round_number}"
-    @board.display_board(@all_colors)
-    puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
-    play_round
+    puts "Thanks! Do you want to be code maker or code guesser? \nType MAKER or GUESSER"
+    @selection = gets.chomp.downcase
+    
+    if @selection == "guesser"
+      puts "Thanks! Computer is going to make a code now..."
+      @computer.make_a_code(@all_colors)
+      @board.hidden_row = @computer.code 
+      puts "\nIt's round number: #{@round_number}"
+      @board.display_board(@all_colors)
+      puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
+      play_guesser_round
+    end
+
+    if @selection == "maker"
+      puts "Thanks! Make a code from available colors..."
+      @board.show_available_colors(@all_colors)
+      @player.make_a_code(@all_colors)
+    end
   end
 
 end
