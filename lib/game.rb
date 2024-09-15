@@ -5,66 +5,57 @@ require_relative 'sort/computer'
 require_relative 'sort/player'
 require_relative 'sort/pins'
 
-board = Board.new
-white_pin = Pin.new("white", "W")
-red_pin = Pin.new("red", "R")
+class Game
 
-red_ball = Colors.new("red", "X")
-green_ball = Colors.new("green", "X")
-yellow_ball = Colors.new("yellow", "X")
-blue_ball = Colors.new("blue", "X")
-purple_ball = Colors.new("magenta", "X")
-cyan_ball = Colors.new("cyan", "X")
-white_ball = Colors.new("white", "X")
-grey_ball = Colors.new("grey", "X")
+  def initialize
+    @board = Board.new
+    @white_pin = Pin.new("white", "W")
+    @red_pin = Pin.new("red", "R")
+    
+    @all_colors = [
+      Colors.new("red", "X"),
+      Colors.new("green", "X"),
+      Colors.new("yellow", "X"),
+      Colors.new("blue", "X"),
+      Colors.new("magenta", "X"),
+      Colors.new("cyan", "X"),
+      Colors.new("white", "X"),
+      Colors.new("grey", "X")
+    ]
 
-# board.display_board(computer)
-white_pin.show_me
-red_pin.show_me
-puts red_ball.symbol
-puts yellow_ball.symbol
+    @player = Player.new(@player_name)
+    @computer = Computer.new("computer")
+  end
 
-# starts the game 
+  def play_round
+    12.times do
+      @player.guess(@all_colors)
+      @board.guess_row = @player.guessed_code
+      @board.check_for_hints(@white_pin, @red_pin)
+      @board.display_board(@all_colors)
+      
+      if @board.hint_row.all?(@red_pin)
+        puts "Game over! #{@player_name} wins!"
+        break
+      end
+      puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
+    end
+  end
+    
+  def start
+    puts "Welcome to Mastermind! What is your name?"
+    @player_name = gets.chomp
+    puts "Thanks! Computer is going to make a code now..."
+    @computer.make_a_code(@all_colors)
+    @board.hidden_row = @computer.code 
+    @board.display_board(@all_colors)
+    puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
+    play_round
+  end
 
-puts "Let's start the game... What is your name?"
-player_name = gets.chomp
+end
 
-player = Player.new(player_name)
+game = Game.new
+game.start
 
-puts "Computer is going to make a code now..."
-# Think later when to move all_colors. I think it looks misplaced here
-all_colors = [red_ball, green_ball, yellow_ball, blue_ball,
-purple_ball, cyan_ball, white_ball, grey_ball]
-
-computer = Computer.new("computer")
-computer.make_a_code(all_colors)
-board.hidden_row = computer.code 
-
-
-board.display_board(all_colors)
-
-puts "Guess the code by putting each peg in every hole. 
-To do it type name of the color: "
-player.play_round(board, all_colors, white_pin, red_pin)
-# round = (1..12)
-# round.each do |round|
-
-#   player.guess(all_colors)
-#   board.guess_row = player.guessed_code
-#   board.check_for_hints(white_pin, red_pin)
-#   board.display_board(all_colors)
-#   puts "Guess the code by putting each peg in every hole. 
-#   To do it type name of the color: "
-#   # binding.pry
-#   if board.hint_row.all?(red_pin)
-#     puts "#{player_name} WON!"
-#     break
-#   end
-  
-# end
-
-
-  
 # first thing tomorrow - make counter for rounds and if player won and refactor game file to make it a class
-
-
