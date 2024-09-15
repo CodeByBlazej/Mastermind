@@ -72,4 +72,4 @@ end
 game = Game.new
 game.start
 
-# first thing tomorrow - make counter for rounds and if player won and refactor game file to make it a class
+# first thing tomorrow - carry on with start method
