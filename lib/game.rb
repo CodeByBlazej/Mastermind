@@ -43,6 +43,13 @@ class Game
       puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
     end
   end
+
+  def computer_guesser_round
+    @computer.guess(@all_colors)
+    @board.guess_row = @computer.guessed_code
+
+    @board.display_board(@all_colors)
+  end
     
   def start
     puts "Welcome to Mastermind! What is your name?"
@@ -64,6 +71,11 @@ class Game
       puts "Thanks! Make a code from available colors..."
       @board.show_available_colors(@all_colors)
       @player.make_a_code(@all_colors)
+      @board.hidden_row = @player.code
+      puts "\nIt's round number: #{@round_number}"
+      @board.display_board(@all_colors)
+      puts "Computer is guessing now..."
+      computer_guesser_round
     end
   end
 
