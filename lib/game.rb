@@ -84,4 +84,4 @@ end
 game = Game.new
 game.start
 
-# first thing tomorrow - carry on with start method
+# first thing tomorrow - finish computer guess method and carry on with computer guesser round
