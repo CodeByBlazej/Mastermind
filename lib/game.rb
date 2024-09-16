@@ -47,8 +47,9 @@ class Game
   def computer_guesser_round
     @computer.guess(@all_colors)
     @board.guess_row = @computer.guessed_code
-
     @board.display_board(@all_colors)
+    @player.check_for_hints(@white_pin, @red_pin)
+    p @player.player_hint_row
   end
     
   def start
