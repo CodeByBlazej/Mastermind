@@ -15,10 +15,8 @@ class Computer
   end
   
   def guess(all_colors)
-    @guessed_code = Array.new(4) do
-    all_colors.find { |color| color.color_name }
+    @guessed_code = all_colors.sample(4)
     # @guessed_code.sample(4)
-    end
   end
 
 end
