@@ -30,13 +30,21 @@ class Player
 
   def check_for_hints(white_pin, red_pin)
     hints = Array.new(4) do
-      until gets.chomp == white_pin.color || gets.chomp == red_pin.color do
-        puts "Please type color white, red or 0 for no matches..."        
-      end
-      @player_hint_row = hints
+      user_input = nil
       
+      until (user_input == white_pin.color || user_input == red_pin.color || user_input == '0' )
+        puts "Please type color white for a match but in the wrong place,\nred for a match in the same place or 0 for no matches..."        
+        user_input = gets.chomp.downcase
+      end
+    
+      if user_input == white_pin.color
+        white_pin
+      elsif user_input == red_pin.color
+        red_pin
+      else
+        nil
+      end  
     end
-
+    @player_hint_row = hints
   end
-
 end
