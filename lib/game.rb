@@ -51,7 +51,7 @@ class Game
     @player.check_for_hints(@white_pin, @red_pin)
     @board.hint_row = @player.player_hint_row
     @board.display_board(@all_colors)
-
+    @computer.check_for_hints(@white_pin, @red_pin)
   end
     
   def start
