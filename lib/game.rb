@@ -32,7 +32,7 @@ class Game
     until @round_number == 12 do
       @player.guess(@all_colors)
       @board.guess_row = @player.guessed_code
-      @board.check_for_hints(@white_pin, @red_pin)
+      @board.player_check_for_hints(@white_pin, @red_pin)
       puts "\nIt's round number: #{@round_number += 1}"
       @board.display_board(@all_colors)
       
@@ -51,7 +51,7 @@ class Game
     @player.check_for_hints(@white_pin, @red_pin)
     @board.hint_row = @player.player_hint_row
     @board.display_board(@all_colors)
-    @computer.check_for_hints(@white_pin, @red_pin)
+    @board.computer_check_for_hints(@white_pin, @red_pin)
   end
     
   def start
