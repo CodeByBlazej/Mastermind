@@ -19,8 +19,4 @@ class Computer
     # @guessed_code.sample(4)
   end
 
-  def check_for_hints(white_pin, red_pin)
-    
-  end
-
 end
