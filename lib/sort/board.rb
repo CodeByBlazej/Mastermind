@@ -44,7 +44,20 @@ class Board
     # puts arr4.join(' ')
   end
 
-  def check_for_hints(white_pin, red_pin)
+  def computer_check_for_hints(white_pin, red_pin)
+    guess_clone = @guess_row.clone
+    hint_clone = @hint_row.clone
+    possible_current_colors = Array.new
+    number_of_whites = hint_clone.count(white_pin)
+    number_of_reds = hint_clone.count(red_pin)
+
+    possible_current_colors.fill(guess_clone.color_name, array.size, number_of_whites)
+    puts possible_current_colors
+    # loop over hints and count W and R. if some are there then make new guess with only those color names that are already known in guess array 
+  
+  end
+
+  def player_check_for_hints(white_pin, red_pin)
     hidden_clone = @hidden_row.clone
     guess_clone = @guess_row.clone
     hints = Array.new(4)
