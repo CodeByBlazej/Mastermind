@@ -3,7 +3,7 @@ require_relative 'computer'
 require_relative 'colors'
 
 class Board
-  attr_accessor :hidden_row, :guess_row, :hint_row, :aval_colors
+  attr_accessor :hidden_row, :guess_row, :hint_row, :aval_colors, :possible_current_colors, :player_selected_pins
 
   def initialize
     @hidden_row = Array.new(4)
@@ -50,7 +50,7 @@ class Board
     number_of_whites = hint_clone.count(white_pin)
     number_of_reds = hint_clone.count(red_pin)
 
-    possible_current_colors = guess_clone.sample(number_of_whites) + guess_clone.sample(number_of_reds)
+    @possible_current_colors = guess_clone.sample(number_of_whites) + guess_clone.sample(number_of_reds)
 
     p possible_current_colors
     # loop over hints and count W and R. if some are there then make new guess with only those color names that are already known in guess array 
@@ -82,4 +82,26 @@ class Board
 
     @hint_row = hints.sample(4)
   end
-end 
+
+  def player_put_the_pins(white_pin, red_pin)
+    hints = Array.new(4) do
+      user_input = nil
+      
+      until (user_input == white_pin.color || user_input == red_pin.color || user_input == '0' )
+        puts "Please type color white for a match but in the wrong place,\nred for a match in the same place or 0 for no matches..."        
+        user_input = gets.chomp.downcase
+      end
+    
+      if user_input == white_pin.color
+        white_pin
+      elsif user_input == red_pin.color
+        red_pin
+      else
+        nil
+      end  
+    end
+    @player_selected_pins = hints
+  end
+end
+
+
