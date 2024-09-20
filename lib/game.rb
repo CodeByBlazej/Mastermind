@@ -45,13 +45,25 @@ class Game
   end
 
   def computer_guesser_round
-    @computer.guess(@all_colors)
-    @board.guess_row = @computer.guessed_code
-    @board.display_board(@all_colors)
-    @player.check_for_hints(@white_pin, @red_pin)
-    @board.hint_row = @player.player_hint_row
-    @board.display_board(@all_colors)
-    @board.computer_check_for_hints(@white_pin, @red_pin)
+    until @round_number == 12 do
+      @computer.guess(@all_colors)
+      @board.guess_row = @computer.guessed_code
+      @board.display_board(@all_colors)
+      # @player.check_for_hints(@white_pin, @red_pin)
+      @board.player_put_the_pins(@white_pin, @red_pin)
+
+      @board.hint_row = @board.player_selected_pins
+      @board.computer_check_for_hints(@white_pin, @red_pin)
+      puts "\nIt's round number: #{@round_number += 1}"
+      @board.display_board(@all_colors)
+
+      
+    end
+    # binding.pry
+
+    # if @board.possible_current_colors.empty?
+      
+    # end
   end
     
   def start
@@ -87,4 +99,5 @@ end
 game = Game.new
 game.start
 
-# first thing tomorrow - finish computer guess method and carry on with computer guesser round
+# first thing tomorrow - move @player.check_for_hints to board. rename this method and class variable and then
+# in board.computer_check_for_hints make it to zero at the end
