@@ -46,6 +46,12 @@ class Game
 
   def computer_guesser_round
     until @round_number == 12 do
+
+      if @board.hint_row.any?
+        @board.hint_row = @board.hint_row.map { |e| e = nil }
+      end
+
+      # binding.pry
       @computer.guess(@all_colors)
       @board.guess_row = @computer.guessed_code
       @board.display_board(@all_colors)
