@@ -29,52 +29,66 @@ class Game
   end
 
   def play_guesser_round
-    until @round_number == 12 do
+    while @round_number <= 12 do
       @player.guess(@all_colors)
       @board.guess_row = @player.guessed_code
       @board.player_check_for_hints(@white_pin, @red_pin)
-      puts "\nIt's round number: #{@round_number += 1}"
+      
       @board.display_board(@all_colors)
       
       if @board.hint_row.all?(@red_pin)
         puts "\nGame over! #{@player_name} wins in round #{@round_number}!"
         break
       end
+      
+      @round_number += 1
+      
+      if @round_number > 12
+        puts "\nGame over! The maximum number of rounds has been reached!"
+        break
+      end
+
+      puts "\nIt's round number: #{@round_number}"
+
       puts "\nGuess the code by putting each peg in every hole. \nTo do it type name of the color: "
     end
   end
 
   def computer_guesser_round
-    until @round_number == 12 do
-
+    while @round_number <= 12 do
+      
       if @board.hint_row.any?
-        @board.hint_row = @board.hint_row.map { |e| e = nil }
+        @board.hint_row = @board.hint_row.map { |slot| slot = nil }
       end
-
-      # binding.pry
+      
       if @board.possible_current_colors.nil?
         @computer.guess(@all_colors)
       else
         @computer.guess_smart(@all_colors, @board.possible_current_colors)
       end
-
+      
+      
       @board.guess_row = @computer.guessed_code
+      puts "\nIt's round number: #{@round_number}"
       @board.display_board(@all_colors)
-      # @player.check_for_hints(@white_pin, @red_pin)
       @board.player_put_the_pins(@white_pin, @red_pin)
-
       @board.hint_row = @board.player_selected_pins
       @board.computer_check_for_hints(@white_pin, @red_pin)
-      puts "\nIt's round number: #{@round_number += 1}"
       @board.display_board(@all_colors)
-
       
+      
+      if @board.hint_row.all?(@red_pin)
+        puts "\nGame over! #{@computer.name} wins in round #{@round_number}!"
+        break
+      end
+      @round_number += 1
+      
+      if @round_number > 12
+        puts "\nGame over! The maximum number of rounds has been reached!"
+        break
+      end
+      # puts "\nIt's round number: #{@round_number}"
     end
-    # binding.pry
-
-    # if @board.possible_current_colors.empty?
-      
-    # end
   end
     
   def start
@@ -98,17 +112,13 @@ class Game
       @board.show_available_colors(@all_colors)
       @player.make_a_code(@all_colors)
       @board.hidden_row = @player.code
-      puts "\nIt's round number: #{@round_number}"
+      # puts "\nIt's round number: #{@round_number}"
       @board.display_board(@all_colors)
       puts "Computer is guessing now..."
       computer_guesser_round
     end
   end
-
 end
 
 game = Game.new
 game.start
-
-# first thing tomorrow - move @player.check_for_hints to board. rename this method and class variable and then
-# in board.computer_check_for_hints make it to zero at the end
