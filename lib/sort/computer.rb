@@ -16,7 +16,6 @@ class Computer
   
   def guess(all_colors)
     @guessed_code = all_colors.sample(4)
-    # @guessed_code.sample(4)
   end
 
   def guess_smart(all_colors, possible_current_colors)
