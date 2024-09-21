@@ -52,10 +52,6 @@ class Board
     number_of_reds = hint_clone.count(red_pin)
 
     @possible_current_colors = guess_clone.sample(number_of_whites) + guess_clone.sample(number_of_reds)
-
-    p possible_current_colors
-    # loop over hints and count W and R. if some are there then make new guess with only those color names that are already known in guess array 
-  
   end
 
   def player_check_for_hints(white_pin, red_pin)
@@ -89,7 +85,7 @@ class Board
       user_input = nil
       
       until (user_input == white_pin.color || user_input == red_pin.color || user_input == '0' )
-        puts "Please type color white for a match but in the wrong place,\nred for a match in the same place or 0 for no matches..."        
+        puts "Please type color 'white' for a match but in the wrong place,\n'red' for a match in the same place or '0' for no matches..."        
         user_input = gets.chomp.downcase
       end
     
@@ -100,6 +96,7 @@ class Board
       else
         nil
       end  
+      
     end
     @player_selected_pins = hints
   end
