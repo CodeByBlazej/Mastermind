@@ -19,4 +19,10 @@ class Computer
     # @guessed_code.sample(4)
   end
 
+  def guess_smart(all_colors, possible_current_colors)
+    number_of_possible_colors = possible_current_colors.count
+    other_possible_colors = all_colors - possible_current_colors
+
+    @guessed_code = possible_current_colors + other_possible_colors.sample(4 - number_of_possible_colors)
+  end
 end
