@@ -10,6 +10,7 @@ class Board
     @guess_row = Array.new(4)
     @hint_row = Array.new(4) 
     # { Array.new(2) }
+    @possible_current_colors = nil
   end
 
   def show_available_colors(all_colors)
