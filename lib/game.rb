@@ -52,7 +52,12 @@ class Game
       end
 
       # binding.pry
-      @computer.guess(@all_colors)
+      if @board.possible_current_colors.nil?
+        @computer.guess(@all_colors)
+      else
+        @computer.guess_smart(@all_colors, @board.possible_current_colors)
+      end
+
       @board.guess_row = @computer.guessed_code
       @board.display_board(@all_colors)
       # @player.check_for_hints(@white_pin, @red_pin)
