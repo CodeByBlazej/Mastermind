@@ -1,5 +1,5 @@
-require_relative 'computer'
-require_relative 'board'
+# Player class responsible for making code if player is CODE MAKER,
+# guessing code if player is CODE GUESSER and checking for correct input
 
 class Player
   attr_accessor :name, :guessed_code, :code, :player_hint_row
@@ -27,24 +27,4 @@ class Player
       make_a_code(all_colors)
     end
   end
-
-  # def check_for_hints(white_pin, red_pin)
-  #   hints = Array.new(4) do
-  #     user_input = nil
-      
-  #     until (user_input == white_pin.color || user_input == red_pin.color || user_input == '0' )
-  #       puts "Please type color white for a match but in the wrong place,\nred for a match in the same place or 0 for no matches..."        
-  #       user_input = gets.chomp.downcase
-  #     end
-    
-  #     if user_input == white_pin.color
-  #       white_pin
-  #     elsif user_input == red_pin.color
-  #       red_pin
-  #     else
-  #       nil
-  #     end  
-  #   end
-  #   @player_hint_row = hints
-  # end
 end
