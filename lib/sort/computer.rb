@@ -1,7 +1,5 @@
-require_relative 'colors'
-require_relative 'board'
-require_relative 'player'
-
+# Computer class responsible for making code if computer is CODE MAKER,
+# and guessing if computer is CODE GUESSER
 
 class Computer
   attr_accessor :name, :code, :guessed_code
