@@ -7,8 +7,4 @@ class Pin
     @color = color
     @color_symbol = color_symbol.colorize(color.to_sym)
   end
-
-  def show_me
-    puts "I am #{@color_symbol}"
-  end
 end
