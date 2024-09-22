@@ -1,6 +1,4 @@
-require 'colorize'
-require_relative 'computer'
-require_relative 'board'
+# Colors class is responsible for colorizing all colors avaiable in the game
 
 class Colors
   attr_accessor :color_name, :symbol
