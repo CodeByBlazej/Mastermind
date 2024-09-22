@@ -1,6 +1,6 @@
-require 'colorize'
-require_relative 'computer'
-require_relative 'colors'
+# Board class responsible for making and displaying board, available colors,
+# computer and player checking hints so they can select correct pins and finally 
+# making pins
 
 class Board
   attr_accessor :hidden_row, :guess_row, :hint_row, :aval_colors, :possible_current_colors, :player_selected_pins
@@ -9,7 +9,6 @@ class Board
     @hidden_row = Array.new(4)
     @guess_row = Array.new(4)
     @hint_row = Array.new(4) 
-    # { Array.new(2) }
     @possible_current_colors = nil
   end
 
@@ -20,32 +19,31 @@ class Board
     puts aval_colors.join(' ')
   end
 
-  def display_board(all_colors)
+  def display_board(all_colors, maker=false)
     puts "-------"
     puts "Colors available in this game are:
     \n"
     show_available_colors(all_colors)
-    # show_available_colors(all_colors)
-    # puts "Colors in this game are: #{all_colors}"
 
     arr1 = @hidden_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
-    
     arr2 = @guess_row.map { |color| color.nil? ? "[0]" : "[#{color.symbol}]" }
     arr3 = @hint_row.map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
-    # arr4 = @hint_row[1].map { |color| color.nil? ? "[0]" : "[#{color.color_symbol}]"}
     
-    puts "\nHIDDEN ROW FOR NOW"
-    puts arr1.join(' ')
-    puts "HIDDEN ROW FOR NOW"
+    if maker == true
+      puts "\nYOUR CODE - HIDDEN:"
+      puts arr1.join(' ')
+      puts "COMPUTER GUESS:"
+    else
+      puts "\nYOUR GUESS:"
+    end
 
     puts arr2.join(' ')
 
-    puts "Pins are:"
+    puts "PINS:"
     puts arr3.join(' ')
-    # puts arr4.join(' ')
   end
 
-  def computer_check_for_hints(white_pin, red_pin)
+  def computer_check_hints(white_pin, red_pin)
     guess_clone = @guess_row.clone
     hint_clone = @hint_row.clone
     number_of_whites = hint_clone.count(white_pin)
@@ -54,7 +52,7 @@ class Board
     @possible_current_colors = guess_clone.sample(number_of_whites) + guess_clone.sample(number_of_reds)
   end
 
-  def player_check_for_hints(white_pin, red_pin)
+  def player_check_hints(white_pin, red_pin)
     hidden_clone = @hidden_row.clone
     guess_clone = @guess_row.clone
     hints = Array.new(4)
@@ -85,7 +83,7 @@ class Board
       user_input = nil
       
       until (user_input == white_pin.color || user_input == red_pin.color || user_input == '0' )
-        puts "Please type color 'white' for a match but in the wrong place,\n'red' for a match in the same place or '0' for no matches..."        
+        puts "\nPlease type color 'white' for a match but in the wrong place,\n'red' for a match in the same place or '0' for no matches..."        
         user_input = gets.chomp.downcase
       end
     
