@@ -12,6 +12,11 @@ class Player
       guess_input = gets.chomp.downcase
       all_colors.find { |color| color.color_name == guess_input }
     end
+
+    return unless @guessed_code.include?(nil)
+
+    puts "Try again, make sure all color names are written correctly"
+    guess(all_colors)
   end
 
   def make_a_code(all_colors)
