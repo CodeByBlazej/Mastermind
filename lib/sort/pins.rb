@@ -1,4 +1,4 @@
-require 'colorize'
+# Pin class responsible for colorizing pins
 
 class Pin
   attr_accessor :color, :color_symbol
